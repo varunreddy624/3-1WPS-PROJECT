@@ -7,7 +7,7 @@ $(document).ready(function(){
 
       $.ajax({
         type: 'POST',
-        url: '/update',
+        url: '/updatepage',
         data: pro,
         success: function(data){
           //alert('successfully added task');
