@@ -1,0 +1,38 @@
+<html>
+<title>
+  view tasks
+</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<% if(request ==='update') {%>
+  <script src="/assets/updatelist.js"></script>
+  <% } else { %>
+  <script src="/assets/deletetask.js"></script>
+<% } %>
+  <% include partials/navbar.ejs %>
+<form>
+  <% var a = []; %>
+  <% for(var i=0;i<prolist.item.length;i++){ %>
+  <% a.push({'item':prolist.item[i],'date':prolist.date[i]}) ; %>
+  <% } %>
+  <% a.sort((c,b) => (c.date > b.date) ? 1 : ((b.date > c.date) ? -1 : 0)); %>
+  <% for(var i=0;i<a.length;i++){ %>
+    <% var date = new Date(); %>
+    <% const monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"]; %>
+      <input type="radio" class="updatetask" name="updatetask"  value=<%= a[i].item%>>
+      <% if(date > a[i].date) {%>
+      <p style="color:red;"><%= a[i].item %></p>
+      <h4 style="color:red;">-- due date <%= a[i].date.getDate() %>th of <%= monthNames[a[i].date.getMonth()] %>,<%= a[i].date.getFullYear() %></h4>
+      <br>
+      <% continue %>
+      <% }else{ %>
+      <p style="color:green;"><%= a[i].item %></p>
+      <h4 style="color:green;">-- due date <%= a[i].date.getDate() %>th of <%= monthNames[a[i].date.getMonth()] %>,<%= a[i].date.getFullYear() %></h4>
+      <br>
+  <% } }%>
+  <% if(request ==='update') {%>
+    <button type="submit">update task</button>
+    <% } else { %>
+    <button type="submit">delete task</button>
+  <% } %>
+</form>
+</html>
