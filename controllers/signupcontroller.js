@@ -18,12 +18,12 @@ var signup = mongoose.model('signup',signUpSchema);
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 
 module.exports = function(app){
-  app.get('/signup',function(req,res){
-    res.render('signup');
+  app.get('/teachersignup',function(req,res){
+    res.render('teachersignup');
   });
 
 
-  app.post('/signup',urlencodedParser,function(req,res){
+  app.post('/teachersignup',urlencodedParser,function(req,res){
     var a = {username:req.body.username};
     signup.find(a,function(err,data){
       if(err) throw err;

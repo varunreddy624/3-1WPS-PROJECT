@@ -4,12 +4,22 @@ $(document).ready(function(){
       var username = $('#username');
       var emailid = $('#emailid');
       var password = $('#password');
-      var role = $('#role');
-      var signup = {username: username.val(),emailid: emailid.val(),password: password.val(),role:role.val()};
+      var task={};
+      for(var i=1;i<=6;i++)
+      {
+        var a=$("#section"+toString(i));
+        var b=$("#subject"+toString(i));
+        if(a.is(":checked"))
+        {
+          task.section=a.val();
+          task.subject=b.val();
+        }
+      }
+      var signup = {username: username.val(),emailid: emailid.val(),password: password.val(),role:"teacher",task:task};
 
       $.ajax({
         type: 'POST',
-        url: '/signup',
+        url: '/teachersignup',
         data: signup,
         success: function(data){
           alert('created account successfully, now return to login page');
