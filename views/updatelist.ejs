@@ -15,13 +15,13 @@
     <% var date = new Date(); %>
     <% const monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"]; %>
     <input type="radio" class="updatetask" name="updatetask"  value=<%= prolist.task[i].item%>>
-      <% if(date > (prolist.task[i].date)) {%>
-      <p style="color:red;"><%= prolist.task[i].item %></p>
-      <h4 style="color:red;">-- due date <%= prolist.task[i].date %></h4>
-      <% continue %>
-      <% } %>
+    <% if(date > (prolist.task[i].date)) {%>
+    <p style="color:red;"><%= prolist.task[i].item %></p>
+    <h4 style="color:red;">-- due date <%= prolist.task[i].date.getDate() %>th of <%= monthNames[prolist.task[i].date.getMonth()] %>,<%= prolist.task[i].date.getFullYear() %></h4>
+    <% } else{%>
       <p style="color:green;"><%= prolist.task[i].item %></p>
-      <h4 style="color:green;">-- due date <%= prolist.task[i].date %></h4>
+      <h4 style="color:green;">-- due date <%= prolist.task[i].date.getDate() %>th of <%= monthNames[prolist.task[i].date.getMonth()] %>,<%= prolist.task[i].date.getFullYear() %></h4>
+    <% } %>
   <% } %>
   <% if(request ==='update') {%>
     <button type="submit">update task</button>

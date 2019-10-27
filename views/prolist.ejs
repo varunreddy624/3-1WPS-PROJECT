@@ -17,10 +17,10 @@
     <li>
       <% if(date > (prolist.task[i].date)) {%>
       <p style="color:red;"><%= prolist.task[i].item %></p>
-      <h4 style="color:red;">-- due date <%= prolist.task[i].date %></h4>
+      <h4 style="color:red;">-- due date <%= prolist.task[i].date.getDate() %>th of <%= monthNames[prolist.task[i].date.getMonth()] %>,<%= prolist.task[i].date.getFullYear() %></h4>
       <% } else{%>
-      <p style="color:green;"><%= prolist.task[i].item %></p>
-      <h4 style="color:green;">-- due date <%= prolist.task[i].date%></h4>
+        <p style="color:green;"><%= prolist.task[i].item %></p>
+        <h4 style="color:green;">-- due date <%= prolist.task[i].date.getDate() %>th of <%= monthNames[prolist.task[i].date.getMonth()] %>,<%= prolist.task[i].date.getFullYear() %></h4>
       <% } %>
     </li>
   <% } %>
