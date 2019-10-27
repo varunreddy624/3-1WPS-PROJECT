@@ -3,7 +3,7 @@ var signupcontroller = require('./controllers/signupcontroller');
 var logincontroller = require('./controllers/logincontroller');
 var todocontroller = require('./controllers/todocontroller');
 var procontroller = require('./controllers/procontroller');
-//var mailcontroller = require('./controllers/mailcontroller');
+var mailcontroller = require('./controllers/mailcontroller');
 var session = require('express-session');
 var redis = require('redis');
 var redisStore = require('connect-redis')(session);
@@ -29,6 +29,7 @@ signupcontroller(app);
 logincontroller(app);
 todocontroller(app);
 procontroller(app);
+//mailcontroller(app); 
 //listen to port
 
 app.delete('/logout',function(req,res){
@@ -36,5 +37,6 @@ app.delete('/logout',function(req,res){
     res.render('login');
 });
 
+//Connect to the data base
 app.listen(3000);
 console.log('You are listenig to port 3000');

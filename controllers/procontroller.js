@@ -91,7 +91,7 @@ app.post('/updatepage',urlencodedParser,function(req,res){
        throw err;
       else
       {
-        pro.updateMany({role:"student",task:{item:req.session.task,date:req.session.date}},{ $set: {"task.$" : a}},function(err,data){
+        pro.updateMany({role:"student",task:{item:req.session.task,date:d}},{ $set: {"task.$" : a}},function(err,data){
           if(err)
            throw err;
           else {
@@ -116,20 +116,12 @@ pro.find({username:req.session.key},function(err,data){ //empty list will fetch 
 });
 
 app.delete('/deletetask/:item',function(req,res){
-var d=new Date();
-pro.find({username:req.session.key},function(err,data){
-  if(err){throw err};
-  var obj = data[0].task.find(o => o.item === req.params.item);
-  d.setTime(Date.parse(obj.date,"YYYY-MM-DDTHH:mm:ss.sss+HH:mm"));
-  var a={item:req.params.item,date:d};
-  req.session.a=a;
-});
-pro.updateOne({username:req.session.key},{$pull:{task:{item:req.session.a.item}}},function(err,data){
+pro.updateOne({username:req.session.key},{$pull:{task:{item:req.params.item}}},function(err,data){
     if(err)
      throw err;
     else
     {
-      pro.updateMany({role:"student"},{$pull:{task:req.session.a}},function(err,data){
+      pro.updateMany({role:"student"},{$pull:{task:{item:req.params.item}}},function(err,data){
         if(err)
          throw err;
         else {
