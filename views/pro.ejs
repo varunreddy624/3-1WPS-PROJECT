@@ -8,13 +8,25 @@
  }
 </style>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="/assets/qandahandler.js"></script>
   <script src="/assets/pro.js"></script>
   <% include partials/navbar.ejs %>
 <div>
   <form>
-    <label> enter task </label>
-    <input type="text" name="item" id="item" required/><br><br>
-    <label> select section </label> <br>
+    <label> quiz or assignment ? </label> <br><br>
+    <select id="item" name="item`">
+        <option value="quiz">QUIZ</option>
+        <option value="assignment">ASSIGNMENT</option>
+    </select><br><br>
+    <div id="assignment">
+        <label> select file </label><br><br>
+        <input type="file" id="file"><br><br>
+    </div>
+    <div id="quiz">
+      <label> enter portion for quiz </label><br><br>
+      <input type="text" id="portion"><br><br>
+    </div>
+    <label> select section </label> <br><br>
     <select id="section" name="section">
         <option value="2/4CSE-A">2/4 CSE-A</option>
         <option value="2/4CSE-B">2/4 CSE-B</option>
@@ -22,17 +34,11 @@
         <option value="3/4CSE-B">3/4 CSE-B</option>
         <option value="4/4CSE-A">4/4 CSE-A</option>
         <option value="4/4CSE-B">4/4 CSE-B</option>
-    </select><br>
-    <label> subject </label>:
+    </select><br><br>
+    <label> subject </label>:<br><br>
     <input type="text" name="subject" id="subject" required/><br><br>
-    <label >when is the due date</label>
+    <label >when is the due date</label><br><br>
     <input type="date" name="date" id="date" required><br><br>
-    <!-- <label >how often would you like to recieve email </label>
-    <select>
-      <option value="12hours">12hours</option>
-      <option value="1day">1 day</option>
-      <option value="2days">2 days</option>
-    </select> -->
     <button type="submit">Add item</button>
   </form>
 </div>

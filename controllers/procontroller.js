@@ -20,9 +20,9 @@ module.exports = function(app){
   });
 });
 
-
   app.post('/pro',urlencodedParser,function(req,res){
-      var a={item:req.body.item,date:new Date(req.body.date)};
+      console.log(req.body);
+      var a={item:req.body.item,date:new Date(req.body.date),portion:req.body.portion,file:req.body.file};
       pro.updateOne({username:req.session.key,task:{$elemMatch:{section:req.body.section}}},{$addToSet:{'task.$.a':a}},function(err,data){
         if(err)
          throw err;
