@@ -5,13 +5,15 @@ $(document).ready(function(){
       var date = $('#date');
       var subject = $('#subject');
       var section = $('#section');
-      if(item.val=='assignment')
+      var filename = $('#filename');
+      if(item.val()=='assignment')
       {
-        var file = $('#file');
-        pro = {item: item.val(),date:date.val(),section:section.val(),subject:subject.val(),file:file.val()};
+        alert('assignment');
+        pro = {item: item.val(),date:date.val(),section:section.val(),subject:subject.val(),filename:filename.val()};
       }
       else
       {
+        alert('quiz');
         var portion = $('#portion');
         pro = {item: item.val(),date:date.val(),section:section.val(),subject:subject.val(),portion:portion.val()};
       }
@@ -20,10 +22,16 @@ $(document).ready(function(){
         url: '/pro',
         data: pro,
         success: function(data){
-            window.location='http://127.0.0.1:3000/pro';
+          if(item.val()=='assignment')
+          {
+            window.location='http://127.0.0.1:3000/assignment';
             //window.location='http://127.0.0.1:3000/teacherprolist';
           }
-      });
+          else {
+            window.location='http://127.0.0.1:3000/pro';
+          }
+      }
+    });
       return false;
   });
 });
