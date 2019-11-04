@@ -23,7 +23,8 @@ app.set('view engine','ejs');
 
 
 //static files
-app.use('/assets',express.static('./public/assets')); //express.static is the buil-in middle-ware
+app.use('/assets',express.static('./public/assets'));
+app.use('/uploads',express.static('./public/uploads'));//express.static is the buil-in middle-ware
 //fire controllers
 signupcontroller(app);
 logincontroller(app);

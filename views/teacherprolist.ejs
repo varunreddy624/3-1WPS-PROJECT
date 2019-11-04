@@ -18,7 +18,7 @@
       <% const monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"]; %>
       <li>
         <% if(prolist.task[k].a[i].item == 'assignment'){ %>
-              <h1> "./public/uploads/"+"<%= prolist.task[k].a[i].file %>" </h1>
+              <iframe src= "./uploads/<%=prolist.task[k].a[i].file%>"> </iframe>
         <% } %>
         <% if(date > (prolist.task[k].a[i].date)) {%>
         <p style="color:red;"><%= prolist.task[k].a[i].item %></p>

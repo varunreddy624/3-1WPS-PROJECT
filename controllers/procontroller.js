@@ -12,7 +12,6 @@ var pro = mongoose.model('signup');
 
 let gfs;
 conn.once('open',function(){
-  //Init Stream
   gfs = Grid(conn.db,mongoose.mongo);
   gfs.collection('uploads');
 });
