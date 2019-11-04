@@ -10,19 +10,17 @@ var conn = mongoose.createConnection("mongodb+srv://test:test1234@todo-qqfes.mon
 
 var pro = mongoose.model('signup');
 
-let gfs;
+var gfs;
 conn.once('open',function(){
   gfs = Grid(conn.db,mongoose.mongo);
   gfs.collection('uploads');
 });
 
-//create storage engine
-/*var storage = new GridFsStorage({
+var storage = new GridFsStorage({
   url: 'mongodb+srv://test:test1234@todo-qqfes.mongodb.net/test?retryWrites=true&w=majority',
   file: (req, file) => {
     return new Promise((resolve, reject) => {
-      var filename = req.session.s+path.extname(file.originalname);
-      filename=filename.trim();
+      var filename = file.originalname;
     const fileInfo = {
           filename: filename,
           bucketName: 'uploads'
@@ -30,21 +28,21 @@ conn.once('open',function(){
         resolve(fileInfo);
     });
   }
-});*/
+});
 
-var storage = multer.diskStorage({
+/*var storage = multer.diskStorage({
      destination: function(req, file, callback) {
          callback(null, './public/uploads');
      },
      filename: function(req, file, callback) {
        callback(null, file.originalname);
      }
- });
+ });*/
 
- var upload = multer({storage:storage});
+ var upload = multer({storage});
 
 
-//const upload = multer({ storage });
+//const uploaddb = multer({ storagedb });
 
 //var data = [{item : 'get milk'},{item:'walk dog'},{item:'kick some coding ass'},{item: 'itemmmm'}];
 var urlencodedParser = bodyParser.urlencoded({extended: false});
@@ -71,7 +69,6 @@ module.exports = function(app){
   app.post('/pro',urlencodedParser,function(req,res){
       console.log(req.body);
       var a={item:req.body.item,date:new Date(req.body.date),portion:req.body.portion,file:req.body.filename};
-      req.session.s=JSON.stringify({username:req.session.key,section:req.body.section,date:new Date(req.body.date)});
       pro.updateOne({username:req.session.key,task:{$elemMatch:{section:req.body.section}}},{$addToSet:{'task.$.a':a}},function(err,data){
         if(err)
          throw err;
@@ -98,7 +95,9 @@ module.exports = function(app){
   app.get('/teacherprolist',function(req,res){
     pro.find({username:req.session.key},function(err,data){ //empty list will fetch all items, if we wish to find specific item we specify them in {}
       if(err) throw err;
-      res.render('teacherprolist',{prolist: data[0]});
+      gfs.files.find().toArray(function(err,f){
+      res.render('teacherprolist',{prolist: data[0],files:f});
+    });
   });
 });
 

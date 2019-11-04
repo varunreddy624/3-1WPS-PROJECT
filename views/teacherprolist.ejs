@@ -17,8 +17,13 @@
       <% var date = new Date(); %>
       <% const monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"]; %>
       <li>
-        <% if(prolist.task[k].a[i].item == 'assignment'){ %>
-              <iframe src= "./uploads/<%=prolist.task[k].a[i].file%>"> </iframe>
+        <% if(prolist.task[k].a[i].item === 'assignment'){ %>
+          <% for(var h=0;h<files.length;h++){ %>
+            <% if(files[h].filename === prolist.task[k].a[i].file){ %>
+              <h1> <%=files[h].filename%> </h1>
+              <object data= "<%=files[h].filename%>"></object>
+            <% } %>
+          <% } %>
         <% } %>
         <% if(date > (prolist.task[k].a[i].date)) {%>
         <p style="color:red;"><%= prolist.task[k].a[i].item %></p>
