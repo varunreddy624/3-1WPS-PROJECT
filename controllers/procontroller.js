@@ -20,6 +20,7 @@ var storage = new GridFsStorage({
   url: 'mongodb+srv://test:test1234@todo-qqfes.mongodb.net/test?retryWrites=true&w=majority',
   file: (req, file) => {
     return new Promise((resolve, reject) => {
+      console.log(file.originalname);
       var filename = file.originalname;
     const fileInfo = {
           filename: filename,

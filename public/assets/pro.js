@@ -8,12 +8,10 @@ $(document).ready(function(){
       var filename = $('#filename');
       if(item.val()=='assignment')
       {
-        alert('assignment');
         pro = {item: item.val(),date:date.val(),section:section.val(),subject:subject.val(),filename:filename.val()};
       }
       else
       {
-        alert('quiz');
         var portion = $('#portion');
         pro = {item: item.val(),date:date.val(),section:section.val(),subject:subject.val(),portion:portion.val()};
       }
