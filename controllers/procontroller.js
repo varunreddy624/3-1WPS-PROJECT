@@ -10,13 +10,13 @@ var conn = mongoose.createConnection("mongodb+srv://test:test1234@todo-qqfes.mon
 
 var pro = mongoose.model('signup');
 
-var gfs;
+let gfs;
 conn.once('open',function(){
   gfs = Grid(conn.db,mongoose.mongo);
   gfs.collection('uploads');
 });
 
-var storage = new GridFsStorage({
+/*var storage = new GridFsStorage({
   url: 'mongodb+srv://test:test1234@todo-qqfes.mongodb.net/test?retryWrites=true&w=majority',
   file: (req, file) => {
     return new Promise((resolve, reject) => {
@@ -29,21 +29,21 @@ var storage = new GridFsStorage({
         resolve(fileInfo);
     });
   }
-});
+});*/
 
-/*var storage = multer.diskStorage({
+var storage = multer.diskStorage({
      destination: function(req, file, callback) {
          callback(null, './public/uploads');
      },
      filename: function(req, file, callback) {
        callback(null, file.originalname);
      }
- });*/
+ });
 
- var upload = multer({storage});
+ var upload = multer({storage:storage});
 
 
-//const uploaddb = multer({ storagedb });
+//const upload = multer({ storage });
 
 //var data = [{item : 'get milk'},{item:'walk dog'},{item:'kick some coding ass'},{item: 'itemmmm'}];
 var urlencodedParser = bodyParser.urlencoded({extended: false});
@@ -63,7 +63,7 @@ module.exports = function(app){
     if(data[0].role==='teacher')
     res.render('pro');
   else
-    res.render('prolist',{prolist:data[0]});
+    res.render('studentprolist',{prolist:data[0]});
   });
   });
 
@@ -96,9 +96,7 @@ module.exports = function(app){
   app.get('/teacherprolist',function(req,res){
     pro.find({username:req.session.key},function(err,data){ //empty list will fetch all items, if we wish to find specific item we specify them in {}
       if(err) throw err;
-      gfs.files.find().toArray(function(err,f){
-      res.render('teacherprolist',{prolist: data[0],files:f});
-    });
+      res.render('teacherprolist',{prolist: data[0]});
   });
 });
 
