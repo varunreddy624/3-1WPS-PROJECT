@@ -1,0 +1,30 @@
+<html>
+<title>
+  view tasks
+</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <% include partials/navbar2.ejs %>
+<ul>
+  <% prolist.task.sort((c,b) => (c.date > b.date) ? 1 : ((b.date > c.date) ? -1 : 0)); %>
+  <% for(var i=0;i<prolist.task.length;i++){ %>
+    <fieldset>
+    <legend><h1><%= prolist.task[i].subject%></h1></legend>
+    <% var date = new Date(); %>
+    <% const monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"]; %>
+    <% if(prolist.task[i].item === 'assignment'){ %>
+          <iframe src="./uploads/<%=prolist.task[i].file%>"></iframe>
+    <% } %>
+    <li>
+      <% if(date > (prolist.task[i].date)) {%>
+      <p style="color:red;"><%= prolist.task[i].item %></p>
+      <h4 style="color:red;">-- due date <%= prolist.task[i].date.getDate() %>th of <%= monthNames[prolist.task[i].date.getMonth()] %>,<%= prolist.task[i].date.getFullYear() %></h4>
+      <% } else{%>
+        <p style="color:green;"><%= prolist.task[i].item %></p>
+        <h4 style="color:green;">-- due date <%= prolist.task[i].date.getDate() %>th of <%= monthNames[prolist.task[i].date.getMonth()] %>,<%= prolist.task[i].date.getFullYear() %></h4>
+      <% } %>
+    </li>
+    </fieldset>
+    <br>
+  <% } %>
+</ul>
+</html>

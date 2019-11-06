@@ -1,0 +1,43 @@
+<html>
+<title>
+  Enter tasks
+</title>
+<style>
+ #teacher{
+   text-align: center;
+ }
+</style>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="/assets/qandahandler.js"></script>
+  <script src="/assets/pro.js"></script>
+  <% include partials/navbar.ejs %>
+<div id="teacher">
+  <form enctype="multipart/form-data">
+    <label> quiz or assignment ? </label> <br><br>
+    <select id="item" name="item">
+        <option value="quiz">QUIZ</option>
+        <option value="assignment">ASSIGNMENT</option>
+    </select><br><br>
+    <label> enter file name </label>
+    <input type="text" name="filename" id="filename"/>
+    <div id="quiz">
+      <label> enter portion for quiz </label><br><br>
+      <input type="text" id="portion"><br><br>
+    </div>
+    <label> select section </label> <br><br>
+    <select id="section" name="section">
+        <option value="2-4CSE-A">2-4 CSE-A</option>
+        <option value="2-4CSE-B">2-4 CSE-B</option>
+        <option value="3-4CSE-A">3-4 CSE-A</option>
+        <option value="3-4CSE-B">3-4 CSE-B</option>
+        <option value="4-4CSE-A">4-4 CSE-A</option>
+        <option value="4-4CSE-B">4-4 CSE-B</option>
+    </select><br><br>
+    <label> subject </label>:<br><br>
+    <input type="text" name="subject" id="subject" required/><br><br>
+    <label >when is the due date</label><br><br>
+    <input type="date" name="date" id="date" required><br><br>
+    <button type="submit">Add item</button>
+  </form>
+</div>
+</html>
