@@ -276,4 +276,8 @@ app.post('/teachersearchtask',urlencodedParser,function(req,res){
     res.status(201).end();
     });
   });
+  app.get('/todo',function(req,res){
+    res.render('todo',{prolist:{}});
+  });
+
 };

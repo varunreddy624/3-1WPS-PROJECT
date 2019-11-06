@@ -13,12 +13,12 @@
   <body>
     <div id="todo-table">
       <form>
-        <input type="text" name="item" placeholder="Add new Item ..." required>
-        <button type="submit">Add item</button>
+        <input type="text" name="item" placeholder="Add new Item ..." id="Input" required>
+        <button type="submit" id="Button">Add item</button>
       </form>
-      <ul>
+      <ul id="Ul">
         <% for(var i=0;i<todos.todo.length;i++){ %>
-          <li><%= todos.todo[i] %></li>
+          <li id="Li"><%= todos.todo[i] %></li>
         <% } %>
       </ul>
     </div>
