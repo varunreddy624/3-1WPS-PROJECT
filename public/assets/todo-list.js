@@ -8,6 +8,7 @@ $(document).ready(function(){
         type: 'POST',
         url: '/todo',
         data: todo,
+        credentials: 'include',
         success: function(data){
           location.reload();
         }
@@ -22,6 +23,7 @@ $(document).ready(function(){
         type: 'POST',
         url: '/tododelete',
         data: todo,
+        credentials: 'include',
         success: function(data){
           //do something with the data via front-end framework
           location.reload();

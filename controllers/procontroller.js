@@ -1,18 +1,11 @@
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var multer = require('multer');
-//var upload = multer();
 var path = require('path');
 var GridFsStorage = require('multer-gridfs-storage');
 var Grid = require('gridfs-stream');
+var crypto = require('crypto');
 
-
-// console.log(process.env);
-// const multerGoogleStorage = require("multer-google-storage")(keyFilename="./wps-5d927-fae2625c07a5.json",projectId="wps-5d927",bucket="wps-5d927.appspot.com");
-
-// var uploadHandler = multer({
-//   storage: multerGoogleStorage.storageEngine()
-// });
 
 var conn = mongoose.createConnection("mongodb+srv://test:test1234@todo-qqfes.mongodb.net/test?retryWrites=true&w=majority");
 
@@ -29,39 +22,33 @@ var storage = new GridFsStorage({
   url: 'mongodb+srv://test:test1234@todo-qqfes.mongodb.net/test?retryWrites=true&w=majority',
   file: (req, file) => {
     return new Promise((resolve, reject) => {
-      var filename = file.originalname;
+      crypto.randomBytes(16, (err, buf) => {
+        if (err) {
+          return reject(err);
+        }
+      const filename = buf.toString('hex') + path.extname(file.originalname);
+      req.session.filename=filename;
       const fileInfo = {
           filename: filename,
           bucketName: 'uploads'
         };
         resolve(fileInfo);
+      });
     });
   }
 });
 
-// var storage = multer.diskStorage({
-//      destination: function(req, file, callback) {
-//          callback(null, './public/uploads');
-//      },
-//      filename: function(req, file, callback) {
-//        callback(null, file.originalname);
-//      }
-//  });
-
-//  var upload = multer({storage:storage});
-
 const upload = multer({ storage });
 
-//var data = [{item : 'get milk'},{item:'walk dog'},{item:'kick some coding ass'},{item: 'itemmmm'}];
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 
 module.exports = function(app){
-  
+
   app.get('/default',function(req,res){
     pro.find({username:req.session.key},function(err,data){
     if(data[0].role==='teacher')
     res.render('teacherprolist',{prolist:data[0]});
-  else
+    else
     res.render('studentprolist',{prolist:data[0]});
       });
   });
@@ -77,7 +64,6 @@ module.exports = function(app){
   app.post('/pro',urlencodedParser,function(req,res){
       var data = req.body;
       var a={item:data.item,date:new Date(data.date),portion:data.portion};
-      console.log(a);
       pro.updateOne({username:req.session.key,task:{$elemMatch:{section:req.body.section}}},{$addToSet:{'task.$.a':a}},function(err,data){
         if(err)
          throw err;
@@ -137,7 +123,7 @@ module.exports = function(app){
 
   app.post('/storage',upload.single('file'),function(req,res){
     var data = req.body;
-    var a={item:"assignment",date:new Date(data.date)};
+    var a={item:"assignment",date:new Date(data.date),file:req.session.filename};
     pro.updateOne({username:req.session.key,task:{$elemMatch:{section:req.body.section}}},{$addToSet:{'task.$.a':a}},function(err,data){
       if(err)
        throw err;
@@ -152,7 +138,9 @@ module.exports = function(app){
               if(err)
                 throw err;
               else
-                res.render('pro');
+              {
+                res.render('pro')
+              }
             });
           }
         });
@@ -161,7 +149,6 @@ module.exports = function(app){
   });
 
   app.get('/teacherprolist',function(req,res){
-    console.log(req.session);
     if(req.session.role=="teacher")
     {
       pro.find({username:req.session.key},function(err,data){ //empty list will fetch all items, if we wish to find specific item we specify them in {}
@@ -264,7 +251,7 @@ app.get('/deletetask',function(req,res){
     });
   }
   else{
-    res.satus(404).end();
+    res.status(404).end();
   }
 });
 

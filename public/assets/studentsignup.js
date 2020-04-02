@@ -11,6 +11,7 @@
           type: 'POST',
           url: '/studentsignup',
           data: signup,
+          credentials: 'include',
           success: function(data){
             alert('created account successfully, now return to login page');
             window.location='http://127.0.0.1:3000/'

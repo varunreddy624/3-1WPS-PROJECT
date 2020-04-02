@@ -8,20 +8,17 @@ var session = require('express-session');
 var redis = require('redis');
 var redisStore = require('connect-redis')(session);
 var client  = redis.createClient();
-const methodOverride = require('method-override');
+var cors = require('cors');
 
 var app = express();
-
-process.env.GCS_BUCKET="wps-5d927.appspot.com";
-process.env.GCLOUD_PROJECT = "wps-5d927";
-process.env.GCS_KEYFILE = "./wps-5d927-fae2625c07a5.json";
 
 
 app.use(session({
   secret: 'shhhhh',
   store: new redisStore({ host: 'localhost', port: 6379, client: client,ttl : 260}),
   saveUninitialized: false,
-  resave: false
+  resave: false,
+  cookie: { secure: false }
 }));
 
 //set up template engine
@@ -31,7 +28,6 @@ app.set('view engine','ejs');
 //static files
 app.use('/assets',express.static('./public/assets'));
 app.use('/uploads',express.static('./public/uploads'));//express.static is the buil-in middle-ware
-app.use(methodOverride('_method'));
 
 //fire controllers
 signupcontroller(app);

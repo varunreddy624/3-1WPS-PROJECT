@@ -4,13 +4,12 @@ $(document).ready(function(){
       var username = $('#username');
       var password = $('#password');
       var login = {username: username.val(),password: password.val()};
-
       $.ajax({
         type: 'POST',
         url: '/',
         data: login,
+        credentials: 'include',
         success: function(data){
-          alert(data.role);
           if(data.role==='teacher'){
           window.location='http://127.0.0.1:3000/teacherprolist'
           }

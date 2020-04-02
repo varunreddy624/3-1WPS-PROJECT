@@ -26,7 +26,8 @@ module.exports = function(app){
         {
           req.session.key=data[0].username;
           req.session.role=data[0].role;
-          res.json(req.session);
+          var d={role:data[0].role};
+          res.json(d);
         }
       }
   });

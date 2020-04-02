@@ -16,6 +16,7 @@ $(document).ready(function(){
             type: 'POST',
             url: '/pro',
             data: pro,
+            credentials: 'include',
             success: function(data){
                 window.location='http://127.0.0.1:3000/pro';
           }

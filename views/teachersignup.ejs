@@ -1,40 +1,88 @@
-<html>
-<style>
-  body{
-    background-image: url('./assets/back.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-  }
-  div{
-    padding-left: 20%;
-    padding-top: 15%;
-    color: white;
-  }
-  a{
-    text-decoration: none;
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="/assets/teachersignup.js"></script>
+<div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+  <div class="panel panel-info">
+      <div class="panel-heading">
+          <div class="panel-title">Sign Up</div>
+          <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="/" >Log In</a></div>
+      </div>  
+      <div class="panel-body" >
+          <form id="signupform" class="form-horizontal" role="form">
+              
+              <div id="signupalert" style="display:none" class="alert alert-danger">
+                  <p>Error:</p>
+                  <span></span>
+              </div>
+                  
+              <div class="form-group">
+                <label for="username" class="col-md-3 control-label">username</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" name="username"  id = "username" placeholder="username">
+                </div>
+            </div>
+                
+              <div class="form-group">
+                  <label for="email" class="col-md-3 control-label">Email</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" name="email" id="emailid" placeholder="Email Address">
+                  </div>
+              </div>
 
-  }
-</style>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="/assets/teachersignup.js"></script>
-    <div>
-      <form>
-        <label>username</label>
-        <input type="text" name="username" id="username"><br><br>
-        <label>email-id</label>
-        <input type="email" name="emailid" id="emailid"><br><br>
-        <label>sections you teach and corresponding subjects</label><br><br>
-        <input type="checkbox" name="section" id="section1" value="2-4CSE-A"> 2/4 CSE-A <input type="text" id="subject1"><br>
-        <input type="checkbox" name="section" id="section2" value="2-4CSE-B"> 2/4 CSE-B <input type="text" id="subject2"><br>
-        <input type="checkbox" name="section" id="section3" value="3-4CSE-A"> 3/4 CSE-A <input type="text" id="subject3"><br>
-        <input type="checkbox" name="section" id="section4" value="3-4CSE-B"> 3/4 CSE-B <input type="text" id="subject4"><br>
-        <input type="checkbox" name="section" id="section5" value="4-4CSE-A"> 4/4 CSE-A <input type="text" id="subject5"><br>
-        <input type="checkbox" name="section" id="section6" value="4-4CSE-B"> 4/4 CSE-B <input type="text" id="subject6"><br><br><br><br>
-        <label>password</label>
-        <input type="password" name="password" id="password"><br><br>
-        <button type="submit">create account</button>
-      </form>
-      <h3>need to login ? <a href='/'>login here</a></h3>
-  </div>
-</html>
+              <div class="form-group">
+                <label for="section" class="col-md-3 control-label">select the sections and subjects you teach </label>
+                <div class="col-md-9">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="section" id="section1" value="2-4CSE-A">
+                    <label class="form-check-label" for="section1">2/4 CSE-A</label>
+                    <input type="text" class="form-control form-control-sm" id="subject1">
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="section" id="section2" value="2-4CSE-B">
+                    <label class="form-check-label" for="section2">2/4 CSE-B</label>
+                    <input type="text" class="form-control form-control-sm" id="subject2">
+                  </div>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="section" id="section3" value="3-4CSE-A"> 
+                    <label class="form-check-label" for="section3">3/4 CSE-A</label>
+                    <input type="text" class="form-control form-control-sm" id="subject3">
+                  </div>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="section" id="section4" value="3-4CSE-B"> 
+                    <label class="form-check-label" for="section4">3/4 CSE-B</label>
+                    <input type="text" class="form-control form-control-sm" id="subject4">
+                  </div>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="section" id="section5" value="4-4CSE-A"> 
+                    <label class="form-check-label" for="section5">4/4 CSE-A</label>
+                    <input type="text" class="form-control form-control-sm" id="subject5">
+                  </div>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="section" id="section6" value="4-4CSE-B"> 
+                    <label class="form-check-label" for="section6">4/4 CSE-B</label>
+                    <input type="text" class="form-control form-control-sm" id="subject6">
+                  </div>
+                </div>
+              </div>
+                  
+              <div class="form-group">
+                  <label for="password" class="col-md-3 control-label">Password</label>
+                  <div class="col-md-9">
+                      <input type="password" class="form-control" name="passwd" id="password" placeholder="Password">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <!-- Button -->                                        
+                  <div class="col-md-offset-3 col-md-9">
+                      <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign Up</button>
+                  </div>
+              </div>
+          </form>
+       </div>
+  </div> 
+</div> 

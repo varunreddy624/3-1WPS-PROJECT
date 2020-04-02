@@ -1,41 +1,65 @@
-<html>
-<style>
-  body{
-    background-image: url('./assets/back.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-  }
-  div{
-    padding-left: 20%;
-    padding-top: 15%;
-    color: white;
-  }
-  a{
-    text-decoration: none;
-  }
-</style>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="/assets/studentsignup.js"></script>
-    <div>
-      <form>
-        <label>username</label>
-        <input type="text" name="username" id="username"><br><br>
-        <label>select section</label>
-        <select id="section" name="section">
-            <option value="2-4CSE-A">2/4 CSE-A</option>
-            <option value="2-4CSE-B">2/4 CSE-B</option>
-            <option value="3-4CSE-A">3/4 CSE-A</option>
-            <option value="3-4CSE-B">3/4 CSE-B</option>
-            <option value="4-4CSE-A">4/4 CSE-A</option>
-            <option value="4-4CSE-B">4/4 CSE-B</option>
-        </select><br>
-        <label>email-id</label>
-        <input type="email" name="emailid" id="emailid"><br><br>
-        <label>password</label>
-        <input type="password" name="password" id="password"><br><br>
-        <button type="submit">create account</button>
-      </form>
-      <h3>need to login ? <a href='/'>login here</a></h3>
-  </div>
-</html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="/assets/studentsignup.js"></script>
+<div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+  <div class="panel panel-info">
+      <div class="panel-heading">
+          <div class="panel-title">Sign Up</div>
+          <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="/" >Log In</a></div>
+      </div>  
+      <div class="panel-body" >
+          <form id="signupform" class="form-horizontal" role="form">
+              
+              <div id="signupalert" style="display:none" class="alert alert-danger">
+                  <p>Error:</p>
+                  <span></span>
+              </div>
+                  
+              <div class="form-group">
+                <label for="username" class="col-md-3 control-label">username</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" name="username"  id = "username" placeholder="username">
+                </div>
+            </div>
+                
+              <div class="form-group">
+                  <label for="email" class="col-md-3 control-label">Email</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" name="email" id="emailid" placeholder="Email Address">
+                  </div>
+              </div>
+
+              <div class="form-group">
+                <label for="section" class="col-md-3 control-label">select section</label>
+                <div class="col-md-9">
+                  <select class="form-control" id="section">
+                    <option value="2-4CSE-A">2/4 CSE-A</option>
+                    <option value="2-4CSE-B">2/4 CSE-B</option>
+                    <option value="3-4CSE-A">3/4 CSE-A</option>
+                    <option value="3-4CSE-B">3/4 CSE-B</option>
+                    <option value="4-4CSE-A">4/4 CSE-A</option>
+                    <option value="4-4CSE-B">4/4 CSE-B</option>
+                  </select>
+                </div>
+              </div>
+             
+              <div class="form-group">
+                  <label for="password" class="col-md-3 control-label">Password</label>
+                  <div class="col-md-9">
+                      <input type="password" class="form-control" name="passwd" id="password" placeholder="Password">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <!-- Button -->                                        
+                  <div class="col-md-offset-3 col-md-9">
+                      <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign Up</button>
+                  </div>
+              </div>
+          </form>
+       </div>
+  </div> 
+</div> 

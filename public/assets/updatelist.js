@@ -6,6 +6,7 @@ $(document).ready(function(){
         type: 'POST',
         url: '/update',
         data: item,
+        credentials: 'include',
         success: function(data){
           window.location='http://127.0.0.1:3000/updatepage'
         }

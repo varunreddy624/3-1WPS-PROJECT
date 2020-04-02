@@ -7,6 +7,7 @@ $(document).ready(function(){
         type: 'POST',
         url: '/teachersearchtask',
         data: pro,
+        credentials: 'include',
         success: function(data){
           //alert('successfully added task');
           window.location='http://127.0.0.1:3000/teachersearch'
