@@ -1,0 +1,40 @@
+<html>
+<style>
+  body{
+    background-image: url('./assets/back.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  div{
+    padding-left: 20%;
+    padding-top: 15%;
+    color: white;
+  }
+  a{
+    text-decoration: none;
+
+  }
+</style>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="/assets/teachersignup.js"></script>
+    <div>
+      <form>
+        <label>username</label>
+        <input type="text" name="username" id="username"><br><br>
+        <label>email-id</label>
+        <input type="email" name="emailid" id="emailid"><br><br>
+        <label>sections you teach and corresponding subjects</label><br><br>
+        <input type="checkbox" name="section" id="section1" value="2-4CSE-A"> 2/4 CSE-A <input type="text" id="subject1"><br>
+        <input type="checkbox" name="section" id="section2" value="2-4CSE-B"> 2/4 CSE-B <input type="text" id="subject2"><br>
+        <input type="checkbox" name="section" id="section3" value="3-4CSE-A"> 3/4 CSE-A <input type="text" id="subject3"><br>
+        <input type="checkbox" name="section" id="section4" value="3-4CSE-B"> 3/4 CSE-B <input type="text" id="subject4"><br>
+        <input type="checkbox" name="section" id="section5" value="4-4CSE-A"> 4/4 CSE-A <input type="text" id="subject5"><br>
+        <input type="checkbox" name="section" id="section6" value="4-4CSE-B"> 4/4 CSE-B <input type="text" id="subject6"><br><br><br><br>
+        <label>password</label>
+        <input type="password" name="password" id="password"><br><br>
+        <button type="submit">create account</button>
+      </form>
+      <h3>need to login ? <a href='/'>login here</a></h3>
+  </div>
+</html>

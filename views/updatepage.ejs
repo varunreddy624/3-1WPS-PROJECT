@@ -1,0 +1,27 @@
+<html>
+<title>
+</title>
+<style>
+ div{
+   text-align: center;
+ }
+</style>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="/assets/updatepage.js"></script>
+  <% include partials/navbar.ejs %>
+<div>
+  <form>
+    <label> task </label>
+    <input type="text" name="item" id="item" value=<%= task; %>><br><br>
+    <label >changed due date</label>
+    <input type="date" name="date" id="date" required><br><br>
+    <!-- <label >how often would you like to recieve email </label>
+    <select>
+      <option value="12hours">12hours</option>
+      <option value="1day">1 day</option>
+      <option value="2days">2 days</option>
+    </select> -->
+    <button type="submit">Update item</button>
+  </form>
+</div>
+</html>

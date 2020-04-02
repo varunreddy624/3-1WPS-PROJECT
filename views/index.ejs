@@ -1,0 +1,7 @@
+<% if(files){ %>
+    <% files.forEach(function(file) { %>
+        <embed src="file/<%= file.filename %>" />
+    <% }) %>
+<% } else { %>
+    <p>No files to show</p>
+<% } %>

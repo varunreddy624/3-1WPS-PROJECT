@@ -1,0 +1,38 @@
+<html>
+<style>
+  body{
+    background-image: url('./assets/back.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  div{
+    height:40%;
+    width:30%;
+    padding-left: 20%;
+    padding-top: 15%;
+    color: white;
+  }
+  a{
+    text-decoration: none;
+
+  }
+</style>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="/assets/login.js"></script>
+  <body>
+    <div>
+    <form>
+      <label>Enter username</label>
+      <input type="text" name="username" id="username"><br><br>
+      <label>Enter Password</label>
+      <input type="password" name="password" id="password"><br><br>
+      <button type="submit">login!</button>
+    </form>
+      <h3>don't have an account?<br>
+        student signup -> <a href='/studentsignup'>sign up here</a><br>
+        teacher signup -> <a href='/teachersignup'>sign up here</a>
+      </h3>
+    </div>
+  </body>
+</html>
